@@ -1,0 +1,4 @@
+
+## Sistema de Mini-Sudoku Ranqueado
+
+Repositório que contém o projeto final da disciplina de Desenvolvimento de Sistemas. 
