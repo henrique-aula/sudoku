@@ -11,27 +11,29 @@ namespace Web.API
         private WebApplicationBuilder _builder;
         private WebApplication _app;
 
-        public void start()
+
+        public async Task start()
         {
-            _app.MapGet("/{content}", (string content) =>
+            // _app.MapPost("/{content}", (string content) =>
+            // {
+            //     return content;
+            // }).WithName("processar");
+
+            _app.MapGet("/sudoku" , (Sudoku s) =>
             {
-                return content;
-            }).WithName("processar");
+                return Results.Ok(s.api_get_boards());
+            }).WithName("sudoku");
 
-
-
-
-            _app.MapGet("/new" , (Sudoku jogo) =>
-            {
-                return Results.Ok(jogo.api_get_boards());
-            }).WithName("new");
-
-            _app.Run();
+            await _app.RunAsync();
         }
+
+
 
         public API()
         {
             _builder = WebApplication.CreateBuilder(new string[0]);
+
+            //_builder.Services.AddSingleton<MatchMaker>(new MatchMaker());
             _builder.Services.AddSingleton<Sudoku>(sp =>
             {
                 return new Sudoku(6, 3, 2);
