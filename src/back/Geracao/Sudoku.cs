@@ -209,7 +209,7 @@ namespace Geracao.Sudoku
             }
         }
 
-        public string[] api_get_boards()
+        public string[] new_boards()
         {
             new_valid_boards(board, solution);
 

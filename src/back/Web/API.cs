@@ -21,7 +21,7 @@ namespace Web.API
 
             _app.MapGet("/sudoku" , (Sudoku s) =>
             {
-                return Results.Ok(s.api_get_boards());
+                return Results.Ok(s.new_boards());
             }).WithName("sudoku");
 
             await _app.RunAsync();
