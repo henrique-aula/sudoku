@@ -2,14 +2,17 @@ using System.Net;
 using System.Net.WebSockets;
 using System.Text;
 using System.Collections.Concurrent;
-
+using Geracao.Sudoku;
+using System.Runtime.InteropServices;
 
 namespace Sockets.WebSocketServer;
 public class WebSocketServer
 {
-    
+    //variaveis    
     private static ConcurrentDictionary<string, WebSocket> _clients = new();
+    private static Sudoku _sudoku = new Sudoku(6, 3, 2);
 
+    //-------
 
     static async Task MessageClientAsync(string message, WebSocket webSocket)
     {
@@ -41,7 +44,10 @@ public class WebSocketServer
 
                 if (message == "jogar")
                 {
-                    await MessageClientAsync("jogará.", webSocket);
+                    string resposta = _sudoku.new_boards()[0];
+
+
+                    await MessageClientAsync(resposta, webSocket);
                 }
                 else
                 {
@@ -89,5 +95,6 @@ public class WebSocketServer
             }
         }
     }
+
 
 }
